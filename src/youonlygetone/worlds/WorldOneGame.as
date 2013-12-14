@@ -3,6 +3,7 @@ package youonlygetone.worlds
 	import net.flashpunk.FP;
 	import net.flashpunk.World;
 	import youonlygetone.Robot;
+	import youonlygetone.worlds.worldOne.entities.Enemy;
 	import youonlygetone.worlds.worldOne.entities.SkipButton;
 	import youonlygetone.worlds.worldOne.entities.Splash;
 	import youonlygetone.worlds.worldOne.entities.TextForPlayer;
@@ -43,11 +44,14 @@ package youonlygetone.worlds
 			add(new Platform(168,120));
 			add(new Platform(200, 120));
 			player = new Robot(0, 87);
+			add(new Enemy(168, 93));
 			player.allowMove();
 			add(player);
 		}
 		override public function update():void {
 			super.update();
+			
+			
 		}
 	}
 }

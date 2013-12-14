@@ -31,6 +31,10 @@ package youonlygetone.worlds.worldOne.entities
 				x = 230;
 				y = Math.random() * 180 - 15;
 			}			
+			if (x > 210) {
+				x = -20;
+				y = Math.random() * 180 - 15;
+			}
 			y += speed;
 			num += 0.01;
 			if (y > 165) {

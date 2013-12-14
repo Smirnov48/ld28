@@ -3,6 +3,7 @@ package
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import youonlygetone.worlds.WorldOne;
+	import youonlygetone.worlds.WorldOneGame;
 
 	public class Main extends Engine
 	{
@@ -12,7 +13,8 @@ package
 			scaleX = 4;
 			scaleY = 4;
 			
-			FP.world = new WorldOne();
+			//FP.world = new WorldOne();
+			FP.world = new WorldOneGame();
 		}
 		
 		override public function init():void

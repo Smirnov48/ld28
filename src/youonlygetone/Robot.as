@@ -25,7 +25,7 @@ package youonlygetone
 			this.x = x;
 			this.y = y;
 			
-			name = "sadrobot";
+			name = "robot";
 			
 			graphic = new Image(robot);
 			
