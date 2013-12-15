@@ -9,13 +9,11 @@ package youonlygetone.worlds.worldTwo
 	
 	public class LongBackground extends Entity
 	{
-		[Embed(source = '../../../../assets/longlackground.png')] private const bg:Class;
+		[Embed(source = '../../../../assets/longbackground.png')] private const bg:Class;
 		
 		public function LongBackground()
 		{
 			graphic = new Image(bg);
 		}
 	}
-}
-
 }

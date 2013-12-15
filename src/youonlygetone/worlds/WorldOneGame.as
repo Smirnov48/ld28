@@ -15,7 +15,7 @@ package youonlygetone.worlds
 	import youonlygetone.worlds.worldOne.entities.Shining;
 	import youonlygetone.worlds.worldOne.entities.SnowFlake;
 	import youonlygetone.worlds.worldOne.entities.TutorialText;
-	import youonlygetone.worlds.worldTwo.TryAgainText;
+	import youonlygetone.worlds.common.TryAgainText;
 	
 	public class WorldOneGame extends World
 	{

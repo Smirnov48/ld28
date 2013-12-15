@@ -1,4 +1,4 @@
-package youonlygetone.worlds.worldTwo 
+package youonlygetone.worlds.common
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
@@ -11,9 +11,9 @@ package youonlygetone.worlds.worldTwo
 		
 		public function TryAgainText() 
 		{
-			graphic = new Text("Try Again", 60, 55, { "color":0xFF2861 } );
-		}
-		
+			graphic = new Text("Try Again", 60, 65, { "color":0xFF2861 } );
+			graphic.scrollX = 0;
+			graphic.scrollY = 0;
+		}		
 	}
-
 }

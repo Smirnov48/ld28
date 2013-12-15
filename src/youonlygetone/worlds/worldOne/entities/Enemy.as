@@ -22,6 +22,7 @@ package youonlygetone.worlds.worldOne.entities
 		private var speedX:Number = 0;
 		private var speedY:Number = 0;
 		private var moveAllowed:Boolean = true;
+		private var timeFromSpeach:Number = 0;
 		
 		public function Enemy(x:int, y:int)
 		{
@@ -61,8 +62,12 @@ package youonlygetone.worlds.worldOne.entities
 			
 			x -= 5 * FP.elapsed;
 			
+			timeFromSpeach += FP.elapsed;
 			if (Math.random() < 0.005) {
-				FP.world.add(new AliensSpeech(x + halfWidth, y, "Help us!"));
+				if (timeFromSpeach > 3) {
+					timeFromSpeach = 0;
+					FP.world.add(new AliensSpeech(x + halfWidth, y, "Help us!"));
+				}
 			}
 		}
 		

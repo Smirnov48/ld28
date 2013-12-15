@@ -22,6 +22,9 @@ package youonlygetone
 		private var moveAllowed:Boolean = false;
 		private var blinkCount:int = 0;
 		private var died:Boolean = false;
+		private var flying:Boolean = false;
+		private var doubleJumpAllowed:Boolean = false;
+		private var didSecondJump:Boolean = false;
 		
 		public function Robot(x:int, y:int)
 		{
@@ -34,7 +37,7 @@ package youonlygetone
 			
 			Input.define("Jump", Key.SPACE, Key.UP);
 			
-			setHitbox(22, 33, -4, 0);
+			setHitbox(22, 23, -4, -10);
 		}
 		
 		override public function update():void
@@ -42,6 +45,24 @@ package youonlygetone
 			if (!moveAllowed) {
 				return;
 			}
+			//trace(x, y);
+			
+			if (flying) {
+				if (Input.check(Key.LEFT)) { 
+					x -= 100 * FP.elapsed;
+				}	
+				if (Input.check(Key.RIGHT)) { 
+					x += 100 * FP.elapsed;
+				}
+				if (Input.check(Key.UP)) { 
+					y -= 100 * FP.elapsed;
+				}
+				if (Input.check(Key.DOWN)) {
+					y += 100 * FP.elapsed;
+				}
+				return;
+			}
+			
 			if (died) {
 				speedY += accelerationY;
 				speedX = speedX * 0.95;
@@ -72,12 +93,10 @@ package youonlygetone
 			if (blinkCount == 0) {
 				(graphic as Image).color = 0xFFFFFF;	
 			}
-
 			
-			if (collide("platform", x, y))
-			{
-				if (Input.pressed("Jump"))
-				{
+			if (collide("platform", x, y)) {
+				didSecondJump = false;
+				if (Input.pressed("Jump")) {
 					speedY = -accelerationJump;
 				} else {
 					if (collide("platform", x, y - 5)) {
@@ -87,13 +106,17 @@ package youonlygetone
 					y -= speedY;
 					speedY = 0;
 				}
-			}			
+			} else {
+				if (Input.pressed("Jump") && !didSecondJump) {
+					didSecondJump = true;
+					speedY = -accelerationJump;
+				}
+			}
 			speedY += accelerationY;
 			y += speedY;
-			if ( y > FP.height + 64) { 
-				y = - FP.height - 64;
+			if (y > 310) {
+				LiveCounter.lives = 0;
 			}
-			
 			//FP.elapsed;
 			if (!Input.check(Key.RIGHT) && !Input.check(Key.LEFT)) {
 				if (Math.abs(speedX) <= slowdownX) {
@@ -121,13 +144,6 @@ package youonlygetone
 				}
 				x += speedX;
 			}
-			
-			if (x > 200) {
-				x = -15 ;
-			}
-			if (x < -16) {
-				x = -16 ;
-			}
 		}
 		
 		public function allowMove():void 
@@ -140,6 +156,22 @@ package youonlygetone
 			died = true;
 			(graphic as Image).scaleX = 1.1;
 			(graphic as Image).scaleY = 1.1;
+		}
+		
+		public function fly():void 
+		{
+			flying = true;
+		}
+		
+		public function setVelocity(x:Number, y:Number):void 
+		{
+			speedX = x;
+			speedY = y;
+		}
+		
+		public function allowDoubleJump():void 
+		{
+			doubleJumpAllowed = true;
 		}
 		
 	}
