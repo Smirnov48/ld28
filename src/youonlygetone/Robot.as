@@ -33,7 +33,7 @@ package youonlygetone
 			
 			Input.define("Jump", Key.SPACE, Key.UP);
 			
-			setHitbox(16, 33);
+			setHitbox(22, 33, -4, 0);
 		}
 		
 		override public function update():void
@@ -43,12 +43,18 @@ package youonlygetone
 			}
 			
 			var enemy:Enemy = collide("enemy", x, y) as Enemy;
-			if (enemy) {
-				blinkCount = 15;
+			if (enemy && blinkCount <= 0) {
+				blinkCount = 60;
+				var angle:Number = Math.atan2(enemy.y - y, enemy.x - x);
+				speedX = -3 * Math.cos(angle);
+				speedY = -(Math.min(20 * Math.abs(Math.sin(angle)), 2) + 1);
+				x -= speedX;
+				y += speedY;
+				return;
 			}
 			if (blinkCount > 0) {
 				blinkCount--;
-				if (blinkCount % 2 == 1) {
+				if (blinkCount % 4 == 0) {
 					(graphic as Image).color = 0xFF0000;
 				} else {	
 					(graphic as Image).color = 0xFFFFFF;
@@ -65,6 +71,10 @@ package youonlygetone
 				{
 					speedY = -accelerationJump;
 				} else {
+					if (collide("platform", x, y - 5)) {
+						x -= speedX * 2;
+						speedX = 0;
+					}
 					y -= speedY;
 					speedY = 0;
 				}

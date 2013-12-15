@@ -12,6 +12,8 @@ package
 			super(200, 150, 60, false);
 			scaleX = 4;
 			scaleY = 4;
+			   
+			//FP.console.enable();
 			
 			//FP.world = new WorldOne();
 			FP.world = new WorldOneGame();
