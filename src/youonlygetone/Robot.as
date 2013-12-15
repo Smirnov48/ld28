@@ -5,6 +5,7 @@ package youonlygetone
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import youonlygetone.worlds.worldOne.entities.Enemy;
 	
 	public class Robot extends Entity
 	{
@@ -19,6 +20,7 @@ package youonlygetone
 		private var speedX:Number = 0;
 		private var speedY:Number = 0;
 		private var moveAllowed:Boolean = false;
+		private var blinkCount:int = 0;
 		
 		public function Robot(x:int, y:int)
 		{
@@ -39,6 +41,24 @@ package youonlygetone
 			if (!moveAllowed) {
 				return;
 			}
+			
+			var enemy:Enemy = collide("enemy", x, y) as Enemy;
+			if (enemy) {
+				blinkCount = 15;
+			}
+			if (blinkCount > 0) {
+				blinkCount--;
+				if (blinkCount % 2 == 1) {
+					(graphic as Image).color = 0xFF0000;
+				} else {	
+					(graphic as Image).color = 0xFFFFFF;
+				}
+			} 
+			if (blinkCount == 0) {
+				(graphic as Image).color = 0xFFFFFF;	
+			}
+
+			
 			if (collide("platform", x, y))
 			{
 				if (Input.pressed("Jump"))

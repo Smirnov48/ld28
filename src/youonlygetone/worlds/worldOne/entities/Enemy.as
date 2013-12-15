@@ -35,6 +35,7 @@ package youonlygetone.worlds.worldOne.entities
 			(graphic as Spritemap).flipped = true;
 			(graphic as Spritemap).play("go");
 			setHitbox(16, 28);
+			type = "enemy";
 		}
 		
 		override public function update():void
