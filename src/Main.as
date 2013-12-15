@@ -16,6 +16,7 @@ package
 			//FP.console.enable();
 			
 			//FP.world = new WorldOne();
+			//FP.rate = 0.5;
 			FP.world = new WorldOneGame();
 		}
 		

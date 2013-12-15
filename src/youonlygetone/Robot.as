@@ -50,6 +50,7 @@ package youonlygetone
 				speedY = -(Math.min(20 * Math.abs(Math.sin(angle)), 2) + 1);
 				x -= speedX;
 				y += speedY;
+				LiveCounter.lives--;
 				return;
 			}
 			if (blinkCount > 0) {

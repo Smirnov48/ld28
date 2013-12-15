@@ -2,6 +2,7 @@ package youonlygetone.worlds
 {
 	import net.flashpunk.FP;
 	import net.flashpunk.World;
+	import youonlygetone.LiveCounter;
 	import youonlygetone.Robot;
 	import youonlygetone.worlds.worldOne.entities.Enemy;
 	import youonlygetone.worlds.worldOne.entities.SkipButton;
@@ -47,11 +48,18 @@ package youonlygetone.worlds
 			add(new Enemy(168, 93));
 			player.allowMove();
 			add(player);
+			add(new LiveCounter(this, 5, 5, 5));
 		}
 		override public function update():void {
 			super.update();
 			
+			if (LiveCounter.lives <= 0) {
+				FP.world.remove(player);
+			}
 			
+			if (player.x > 190) {
+				FP.world = new WorldTwo();
+			}
 		}
 	}
 }
