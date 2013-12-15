@@ -1,6 +1,7 @@
 package youonlygetone.worlds
 {
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import youonlygetone.LiveCounter;
 	import youonlygetone.Robot;
@@ -14,6 +15,7 @@ package youonlygetone.worlds
 	import youonlygetone.worlds.worldOne.entities.Shining;
 	import youonlygetone.worlds.worldOne.entities.SnowFlake;
 	import youonlygetone.worlds.worldOne.entities.TutorialText;
+	import youonlygetone.worlds.worldTwo.TryAgainText;
 	
 	public class WorldOneGame extends World
 	{
@@ -26,6 +28,8 @@ package youonlygetone.worlds
 		private var player:Robot;
 		private var skipButton:SkipButton;
 		private var wasIntroEnded:Boolean = false;
+		
+		private var restartCount:Number = -1;
 		
 		public function WorldOneGame()
 		{
@@ -50,15 +54,27 @@ package youonlygetone.worlds
 			add(player);
 			add(new LiveCounter(this, 5, 5, 5));
 		}
+		
 		override public function update():void {
 			super.update();
 			
 			if (LiveCounter.lives <= 0) {
-				FP.world.remove(player);
+				if (restartCount < 0) {
+					restartCount = 0;
+					player.die();
+					add(new TryAgainText());
+				}
 			}
 			
-			if (player.x > 190) {
-				FP.world = new WorldTwo();
+			if (restartCount >= 0) {
+				restartCount += FP.elapsed;
+				if (restartCount > 10) {
+					FP.world = new WorldOneGame();
+				}
+			} else {
+				if (player.x > 190) {
+					FP.world = new WorldTwo();
+				}
 			}
 		}
 	}

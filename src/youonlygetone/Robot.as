@@ -21,6 +21,7 @@ package youonlygetone
 		private var speedY:Number = 0;
 		private var moveAllowed:Boolean = false;
 		private var blinkCount:int = 0;
+		private var died:Boolean = false;
 		
 		public function Robot(x:int, y:int)
 		{
@@ -39,6 +40,13 @@ package youonlygetone
 		override public function update():void
 		{
 			if (!moveAllowed) {
+				return;
+			}
+			if (died) {
+				speedY += accelerationY;
+				speedX = speedX * 0.95;
+				x += speedX;
+				y += speedY;
 				return;
 			}
 			
@@ -125,6 +133,13 @@ package youonlygetone
 		public function allowMove():void 
 		{
 			moveAllowed = true;
+		}
+		
+		public function die():void 
+		{
+			died = true;
+			(graphic as Image).scaleX = 1.1;
+			(graphic as Image).scaleY = 1.1;
 		}
 		
 	}
