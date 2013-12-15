@@ -107,7 +107,7 @@ package youonlygetone
 					speedY = 0;
 				}
 			} else {
-				if (Input.pressed("Jump") && !didSecondJump) {
+				if (doubleJumpAllowed && Input.pressed("Jump") && !didSecondJump) {
 					didSecondJump = true;
 					speedY = -accelerationJump;
 				}

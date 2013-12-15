@@ -33,9 +33,17 @@ package youonlygetone.worlds.worldOne.entities
 			
 			graphic = new Spritemap(sprite, 16, 27);
 			(graphic as Spritemap).add("go", [0, 1, 2, 3, 4], 8, true);
-			(graphic as Spritemap).flipped = true;
+			
+			if (Math.random() < 0.5) {
+				(graphic as Spritemap).flipped = false;
+				speedX = -8;
+			} else {
+				(graphic as Spritemap).flipped = true;
+				speedX = 8;
+			}
+			
 			(graphic as Spritemap).play("go");
-			setHitbox(16, 28);
+			setHitbox(16, 27);
 			type = "enemy";
 		}
 		
@@ -53,14 +61,19 @@ package youonlygetone.worlds.worldOne.entities
 					y -= speedY;
 					speedY = 0;
 				}
+				
+				if (!collide("platform", x - speedX, y + Math.abs(speedX))) {
+					(graphic as Spritemap).flipped = !(graphic as Spritemap).flipped;
+					speedX = -speedX;
+				}
 			}			
 			speedY += accelerationY;
 			y += speedY;
-			if ( y > FP.height + 64) { 
-				y = - FP.height - 64;
+			if ( y > 600) { 
+				FP.world.remove(this);
 			}
 			
-			x -= 5 * FP.elapsed;
+			x -= speedX * FP.elapsed;
 			
 			timeFromSpeach += FP.elapsed;
 			if (Math.random() < 0.005) {

@@ -40,17 +40,6 @@ package youonlygetone.worlds
 		{
 			super();
 			add(new LongBackground());
-			/*
-			for (var i:int = 0; i < 25; i++) {
-				var flake:SnowFlake = new SnowFlake();
-				flake.setWind(Math.random());
-				add(flake);
-			}
-			*/
-//			add(new Platform(350, 230));
-
-//			add(new Platform(350, 270));
-//			add(new Platform(460, 230));
 
 			add(new Platform(350, 270));
 			add(new Platform(380, 250));
@@ -72,20 +61,25 @@ package youonlygetone.worlds
 			add(new Platform(932, 270));
 			add(new Platform(964, 270));
 			add(new Platform(996, 270));
+			add(new Enemy(996, 240));			
 
 			add(new Platform(1200, 240));
 			add(new Platform(1232, 240));
 			add(new Platform(1264, 240));
 			add(new Platform(1296, 240));
+			add(new Enemy(1232, 200));
+			add(new Enemy(1296, 200));
 
 			add(new Platform(310, 270));
 			add(new Platform(240, 260));
 			add(new Platform(150, 255));
 			add(new Platform(110, 265));
+
 			add(new Platform(50, 235));
 			
 			add(new Platform(10, 175));
 			add(new Platform(100, 115));
+			
 			add(new Platform(10, 65));//weapon
 			add(new Platform(140, 55));
 			add(new Platform(230, 65));
@@ -93,28 +87,67 @@ package youonlygetone.worlds
 			
 			add(new Platform(430, 65));
 			add(new Platform(462, 65));//enemy
-			add(new Platform(494, 65));//double jump
-			
-			add(new Platform(494, 65));
-			add(new Platform(494, 65));
+			add(new Platform(494, 65));//double jump			//player.allowDoubleJump();
+			add(new Enemy(460, 33));
 			
 			add(new Platform(724, 110));
 			add(new Platform(804, 70));
 			add(new Platform(864, 50));
-			add(new Platform(896, 50));
-			add(new Platform(930, 50));
+			add(new Platform(896, 50));//knows
+			add(new Platform(928, 50));
+			add(new Enemy(864, 23));
+			add(new Enemy(928, 23));
+
 			
-			player = new Robot(690, 196);
-			//player = new Robot(-10, 116);
-			//player.setVelocity(10, 0);
-			player.allowDoubleJump();
-			player.allowMove();
+			add(new Platform(1330, 50));
+			add(new Platform(1362, 50));//language
+			
+			add(new Platform(1530, 250));
+			add(new Platform(1630, 210));
+			add(new Platform(1662, 210));
+			add(new Platform(1694, 210));
+			add(new Enemy(1694, 160));
+			add(new Platform(1694, 210));
+			add(new Platform(1694, 243));
+			add(new Platform(1694, 276));
+			add(new Platform(1726, 276));
+			add(new Platform(1758, 276));
+			add(new Platform(1790, 276));
+			add(new Platform(1822, 276));
+			add(new Platform(1854, 276));
+			add(new Platform(1886, 276));
+			add(new Platform(1918, 276));
+			add(new Platform(1950, 276));
+			add(new Platform(1982, 276));//boss
+			add(new Platform(2014, 276));
+			add(new Enemy(1822, 230));
+			add(new Enemy(1854, 230));
+			add(new Enemy(1886, 230));
+			add(new Enemy(1950, 230));
+			add(new Enemy(1982, 230));
+			add(new Enemy(2014, 230));
+			
+			add(new Platform(1680, 96));
+			add(new Platform(1880, 76));
+			add(new Platform(2080, 76));
+			
+			add(new Platform(1670, 300));
+			player = new Robot(1694, 166);
+
+			//player = new Robot(460, 76);
 //			player.fly();
+			
+			player = new Robot(-10, 116);
+			player.setVelocity(5, 0);
+			player.allowMove();
+			
+			player.allowDoubleJump();
+			
 			add(player);
 			add(new LiveCounter(this, 5, 5, 5));
 			
 			sb = new ScreenBorder(); 
-			add(sb);
+			//add(sb);
 		}
 		
 		override public function update():void {
