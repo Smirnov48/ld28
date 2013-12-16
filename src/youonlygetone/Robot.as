@@ -5,7 +5,9 @@ package youonlygetone
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.World;
 	import youonlygetone.worlds.worldOne.entities.Enemy;
+	import youonlygetone.worlds.worldTwo.Electro;
 	
 	public class Robot extends Entity
 	{
@@ -25,8 +27,10 @@ package youonlygetone
 		private var flying:Boolean = false;
 		private var doubleJumpAllowed:Boolean = false;
 		private var didSecondJump:Boolean = false;
+		private var electro:Electro;
+		private var timeFromElectro:Number = 0;
 		
-		public function Robot(x:int, y:int)
+		public function Robot(world:World, x:int, y:int)
 		{
 			this.x = x;
 			this.y = y;
@@ -35,9 +39,13 @@ package youonlygetone
 			
 			graphic = new Image(robot);
 			
-			Input.define("Jump", Key.SPACE, Key.UP);
+			Input.define("Jump", Key.UP);
 			
 			setHitbox(22, 23, -4, -10);
+			
+			electro = new Electro(x - 7, y - 14);
+			world.add(electro);
+			electro.visible = false;
 		}
 		
 		override public function update():void
@@ -45,7 +53,6 @@ package youonlygetone
 			if (!moveAllowed) {
 				return;
 			}
-			//trace(x, y);
 			
 			if (flying) {
 				if (Input.check(Key.LEFT)) { 
@@ -69,6 +76,23 @@ package youonlygetone
 				x += speedX;
 				y += speedY;
 				return;
+			}
+			
+			electro.x = x - 7;
+			electro.y = y - 14;
+			if (Skills.allowWeapon && Input.pressed(Key.SPACE)) {
+				electro.visible = true;
+				timeFromElectro = 0;
+			} else {
+				timeFromElectro += FP.elapsed
+				if (timeFromElectro > Math.random() * 0.2 + 0.1) {
+					electro.visible = false;
+				}
+			}
+			
+			var mod:* = collide("mod", x, y);
+			if (mod) {
+				mod.apply();
 			}
 			
 			var enemy:Enemy = collide("enemy", x, y) as Enemy;
@@ -107,7 +131,7 @@ package youonlygetone
 					speedY = 0;
 				}
 			} else {
-				if (doubleJumpAllowed && Input.pressed("Jump") && !didSecondJump) {
+				if (Skills.doubleJump && Input.pressed("Jump") && !didSecondJump) {
 					didSecondJump = true;
 					speedY = -accelerationJump;
 				}
@@ -171,7 +195,7 @@ package youonlygetone
 		
 		public function allowDoubleJump():void 
 		{
-			doubleJumpAllowed = true;
+			Skills.doubleJump = true;
 		}
 		
 	}

@@ -48,7 +48,7 @@ package youonlygetone.worlds
 			add(new Platform(135, 120));
 			add(new Platform(168,120));
 			add(new Platform(200, 120));
-			player = new Robot(0, 87);
+			player = new Robot(this, 0, 87);
 			add(new Enemy(168, 93));
 			player.allowMove();
 			add(player);

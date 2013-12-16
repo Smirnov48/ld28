@@ -19,7 +19,9 @@ package youonlygetone.worlds
 	import youonlygetone.worlds.worldOne.entities.SnowFlake;
 	import youonlygetone.worlds.worldOne.entities.TutorialText;
 	import youonlygetone.worlds.common.TryAgainText;
+	import youonlygetone.worlds.worldTwo.DoubleJumpMod;
 	import youonlygetone.worlds.worldTwo.LongBackground;
+	import youonlygetone.worlds.worldTwo.WeaponMod;
 	
 	public class WorldTwo extends World
 	{
@@ -34,7 +36,6 @@ package youonlygetone.worlds
 		private var wasIntroEnded:Boolean = false;
 		
 		private var restartCount:Number = -1;
-		private var sb:ScreenBorder;
 		
 		public function WorldTwo()
 		{
@@ -132,29 +133,24 @@ package youonlygetone.worlds
 			add(new Platform(2080, 76));
 			
 			add(new Platform(1670, 300));
-			player = new Robot(1694, 166);
-
-			//player = new Robot(460, 76);
-//			player.fly();
 			
-			player = new Robot(-10, 116);
+			player = new Robot(this, 1694, 166);
+			
+			add(new WeaponMod(1594, 156));
+			add(new DoubleJumpMod(1614, 156));
+//			player.fly();
+//			player.allowDoubleJump();
+			
+			//player = new Robot(this, -10, 116);
 			player.setVelocity(5, 0);
 			player.allowMove();
 			
-			player.allowDoubleJump();
-			
 			add(player);
 			add(new LiveCounter(this, 5, 5, 5));
-			
-			sb = new ScreenBorder(); 
-			//add(sb);
 		}
 		
 		override public function update():void {
 			super.update();
-			
-			sb.x = player.x - 100 + 11;
-			sb.y = player.y - 75 + 12;
 			
 			updateCamera();
 			

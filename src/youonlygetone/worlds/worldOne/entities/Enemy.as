@@ -5,6 +5,7 @@ package youonlygetone.worlds.worldOne.entities
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
+	import youonlygetone.worlds.common.Bang;
 	/**
 	 * ...
 	 * @author SmirnovAM
@@ -33,7 +34,7 @@ package youonlygetone.worlds.worldOne.entities
 			
 			graphic = new Spritemap(sprite, 16, 27);
 			(graphic as Spritemap).add("go", [0, 1, 2, 3, 4], 8, true);
-			
+
 			if (Math.random() < 0.5) {
 				(graphic as Spritemap).flipped = false;
 				speedX = -8;
@@ -51,6 +52,13 @@ package youonlygetone.worlds.worldOne.entities
 		{
 			if (!moveAllowed) {
 				return;
+			}
+			
+			var weapon:* =  collide("weapon", x, y);
+			if (weapon && weapon.visible)
+			{
+				FP.world.add(new Bang(x, y));
+				FP.world.remove(this);
 			}
 			if (collide("platform", x, y))
 			{

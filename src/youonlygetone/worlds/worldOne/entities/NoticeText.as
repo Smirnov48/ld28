@@ -5,23 +5,21 @@ package youonlygetone.worlds.worldOne.entities
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
 	import youonlygetone.Skills;
+
 	/**
 	 * ...
 	 * @author SmirnovAM
 	 */
-	public class AliensSpeech extends Entity
+	public class NoticeText extends Entity
 	{
 		private var timeElapsed:Number = 0;
 		private var text:Text;
 		
-		public function AliensSpeech(x:int, y:int, txt:String) 
+		public function NoticeText(x:int, y:int, txt:String) 
 		{
 			this.x = x;
 			this.y = y;
-			if (!Skills.understandAliens) {
-				txt = "^(@#*!@#$@";
-			}
-			text = new Text(txt, 0, 0, { "color":0x68D1FF, "size":8 } );
+			text = new Text(txt, 0, 0, { "color":0x1E9DFF, "size":8 } );
 			text.x = - text.textWidth / 2;
 			graphic = text;
 		}
