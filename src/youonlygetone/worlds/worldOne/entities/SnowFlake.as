@@ -31,7 +31,7 @@ package youonlygetone.worlds.worldOne.entities
 				x = 230;
 				y = Math.random() * 180 - 15;
 			}			
-			if (x > 210) {
+			if (x > 230) {
 				x = -20;
 				y = Math.random() * 180 - 15;
 			}

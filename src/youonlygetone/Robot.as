@@ -107,7 +107,7 @@ package youonlygetone
 			}
 			
 			var enemy:* = collide("enemy", x, y);
-			if ((enemy && blinkCount <= 0) && (!Skills.understandAliens || enemy as Boss || enemy as Fire) ) {
+			if ((enemy && blinkCount <= 0) && (!Skills.understandAliens || enemy as Boss || enemy as Fire) && (timeFromLastDown > 1) ) {
 				blinkCount = 60;
 				var angle:Number = Math.atan2(enemy.y - y, enemy.x - x);
 				speedX = -3 * Math.cos(angle);

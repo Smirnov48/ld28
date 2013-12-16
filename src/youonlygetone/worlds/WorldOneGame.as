@@ -51,7 +51,7 @@ package youonlygetone.worlds
 			add(new Platform(168,120));
 			add(new Platform(200, 120));
 			player = new Robot(this, 0, 87);
-			add(new Enemy(168, 93));
+			add(new Enemy(168, 93, -1));
 			player.allowMove();
 			add(player);
 			add(new LiveCounter(this, 5, 5, 5));

@@ -26,7 +26,7 @@ package youonlygetone.worlds.worldOne.entities
 		private var moveAllowed:Boolean = true;
 		private var timeFromSpeach:Number = 0;
 		
-		public function Enemy(x:int, y:int)
+		public function Enemy(x:int, y:int, turn:int = 0)
 		{
 			this.x = x;
 			this.y = y;
@@ -36,12 +36,22 @@ package youonlygetone.worlds.worldOne.entities
 			graphic = new Spritemap(sprite, 16, 27);
 			(graphic as Spritemap).add("go", [0, 1, 2, 3, 4], 8, true);
 
-			if (Math.random() < 0.5) {
-				(graphic as Spritemap).flipped = false;
-				speedX = -8;
+			if (turn == 0) {
+				if (Math.random() < 0.5) {
+					(graphic as Spritemap).flipped = false;
+					speedX = -8;
+				} else {
+					(graphic as Spritemap).flipped = true;
+					speedX = 8;
+				}
 			} else {
-				(graphic as Spritemap).flipped = true;
-				speedX = 8;
+				if (turn > 0)  {
+					(graphic as Spritemap).flipped = false;
+					speedX = -8;
+				} else { 
+					(graphic as Spritemap).flipped = true;
+					speedX = 8;
+				}
 			}
 			
 			(graphic as Spritemap).play("go");

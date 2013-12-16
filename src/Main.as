@@ -17,8 +17,6 @@ package
 			scaleY = 0.5;
 			/**/
 			
-			
-			
 			super(200, 150, 60, false);
 			scaleX = 4;
 			scaleY = 4;

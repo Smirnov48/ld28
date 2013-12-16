@@ -81,10 +81,12 @@ package youonlygetone.worlds
 
 			add(new Platform(50, 235)); 
 			
-			add(new Platform(10, 175));
-			add(new Platform(100, 115));
+			add(new Platform(-40, 150));
+			add(new Platform(10, 195));
+			add(new Platform(100, 125));
+			add(new Platform(90, 157));
 			
-			add(new Platform(10, 65)); add(new WeaponMod(20, 46));
+			add(new Platform(10, 75)); add(new WeaponMod(20, 46));
 			add(new Platform(140, 55));
 			add(new Platform(230, 65));
 			add(new Platform(310, 50));

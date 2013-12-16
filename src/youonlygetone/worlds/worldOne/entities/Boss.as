@@ -63,7 +63,7 @@ package youonlygetone.worlds.worldOne.entities
 			{
 				countHint++;
 				blinkCount = 30;
-				if (countHint > 60) {				
+				if (countHint > 30) {				
 					FP.world.add(new Bang(x, y));
 					FP.world.remove(this);
 					FP.world = new YouWinWorld();
