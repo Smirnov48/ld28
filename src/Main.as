@@ -5,6 +5,7 @@ package
 	import youonlygetone.worlds.WorldOne;
 	import youonlygetone.worlds.WorldOneGame;
 	import youonlygetone.worlds.WorldTwo;
+	import youonlygetone.worlds.worldTwo.YouWinWorld;
 
 	public class Main extends Engine
 	{
@@ -17,7 +18,7 @@ package
 			/**/
 			
 			
-			//*
+			
 			super(200, 150, 60, false);
 			scaleX = 4;
 			scaleY = 4;
@@ -26,9 +27,11 @@ package
 			   
 			//FP.console.enable();
 			
-			//FP.world = new WorldOne();
+			FP.world = new WorldOne();
+			//FP.world = new WorldOneGame();
 			//FP.rate = 0.5;
-			FP.world = new WorldTwo();
+			//FP.world = new WorldTwo();
+			//FP.world = new YouWinWorld();
 		}
 		
 		override public function init():void

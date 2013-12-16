@@ -8,6 +8,7 @@ package youonlygetone.worlds
 	import youonlygetone.LiveCounter;
 	import youonlygetone.Robot;
 	import youonlygetone.worlds.common.ScreenBorder;
+	import youonlygetone.worlds.worldOne.entities.Boss;
 	import youonlygetone.worlds.worldOne.entities.Enemy;
 	import youonlygetone.worlds.worldOne.entities.SkipButton;
 	import youonlygetone.worlds.worldOne.entities.Splash;
@@ -136,17 +137,18 @@ package youonlygetone.worlds
 			
 			add(new Platform(1670, 300));
 			
+			//player = new Robot(this, 594, 186);
+			//add(new UnderstandAliensMod(614, 196));
+			//add(new DoubleJumpMod(634, 196));add(new WeaponMod(654, 196));
+			//add(new JumpDownMod(674, 196));
 			
-			add(new UnderstandAliensMod(614, 196)); add(new DoubleJumpMod(634, 196));add(new WeaponMod(654, 196));
-			add(new JumpDownMod(674, 196));
-			player = new Robot(this, 694, 166);
+			add(new Boss(2024, 116));
 			
-//			player.fly();
-//			player.allowDoubleJump();
-			
-			//player = new Robot(this, -10, 116);
+			player = new Robot(this, -10, 116);
 			player.setVelocity(5, 0);
 			player.allowMove();
+			
+			//player.fly();
 			
 			add(player);
 			add(new LiveCounter(this, 5, 5, 5));

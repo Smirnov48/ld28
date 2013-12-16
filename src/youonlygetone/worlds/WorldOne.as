@@ -42,7 +42,7 @@ package youonlygetone.worlds
 			add(new Platform(135,88));
 			add(new Platform(168,120));
 			add(new Platform(200, 120));
-			player = new Robot(33, 87);
+			player = new Robot(this, 33, 87);
 			add(player);
 			add(new TextForPlayer(33, 67));
 			skipButton = new SkipButton(130,2);
