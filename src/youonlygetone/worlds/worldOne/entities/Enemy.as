@@ -5,6 +5,7 @@ package youonlygetone.worlds.worldOne.entities
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
+	import youonlygetone.Skills;
 	import youonlygetone.worlds.common.Bang;
 	/**
 	 * ...
@@ -55,7 +56,7 @@ package youonlygetone.worlds.worldOne.entities
 			}
 			
 			var weapon:* =  collide("weapon", x, y);
-			if (weapon && weapon.visible)
+			if (weapon && weapon.visible && !Skills.understandAliens)
 			{
 				FP.world.add(new Bang(x, y));
 				FP.world.remove(this);

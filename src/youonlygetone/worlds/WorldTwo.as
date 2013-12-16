@@ -20,7 +20,9 @@ package youonlygetone.worlds
 	import youonlygetone.worlds.worldOne.entities.TutorialText;
 	import youonlygetone.worlds.common.TryAgainText;
 	import youonlygetone.worlds.worldTwo.DoubleJumpMod;
+	import youonlygetone.worlds.worldTwo.JumpDownMod;
 	import youonlygetone.worlds.worldTwo.LongBackground;
+	import youonlygetone.worlds.worldTwo.UnderstandAliensMod;
 	import youonlygetone.worlds.worldTwo.WeaponMod;
 	
 	public class WorldTwo extends World
@@ -76,25 +78,25 @@ package youonlygetone.worlds
 			add(new Platform(150, 255));
 			add(new Platform(110, 265));
 
-			add(new Platform(50, 235));
+			add(new Platform(50, 235)); 
 			
 			add(new Platform(10, 175));
 			add(new Platform(100, 115));
 			
-			add(new Platform(10, 65));//weapon
+			add(new Platform(10, 65)); add(new WeaponMod(20, 46));
 			add(new Platform(140, 55));
 			add(new Platform(230, 65));
 			add(new Platform(310, 50));
 			
 			add(new Platform(430, 65));
-			add(new Platform(462, 65));//enemy
-			add(new Platform(494, 65));//double jump			//player.allowDoubleJump();
+			add(new Platform(462, 65));
+			add(new Platform(494, 65));add(new DoubleJumpMod(504, 48));
 			add(new Enemy(460, 33));
 			
 			add(new Platform(724, 110));
 			add(new Platform(804, 70));
 			add(new Platform(864, 50));
-			add(new Platform(896, 50));//knows
+			add(new Platform(896, 50));add(new UnderstandAliensMod(906, 35));
 			add(new Platform(928, 50));
 			add(new Enemy(864, 23));
 			add(new Enemy(928, 23));
@@ -118,7 +120,7 @@ package youonlygetone.worlds
 			add(new Platform(1854, 276));
 			add(new Platform(1886, 276));
 			add(new Platform(1918, 276));
-			add(new Platform(1950, 276));
+			add(new Platform(1950, 276)); add(new JumpDownMod(1672, 196));
 			add(new Platform(1982, 276));//boss
 			add(new Platform(2014, 276));
 			add(new Enemy(1822, 230));
@@ -134,10 +136,11 @@ package youonlygetone.worlds
 			
 			add(new Platform(1670, 300));
 			
-			player = new Robot(this, 1694, 166);
 			
-			add(new WeaponMod(1594, 156));
-			add(new DoubleJumpMod(1614, 156));
+			add(new UnderstandAliensMod(614, 196)); add(new DoubleJumpMod(634, 196));add(new WeaponMod(654, 196));
+			add(new JumpDownMod(674, 196));
+			player = new Robot(this, 694, 166);
+			
 //			player.fly();
 //			player.allowDoubleJump();
 			

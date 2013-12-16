@@ -8,6 +8,7 @@ package youonlygetone
 	import net.flashpunk.World;
 	import youonlygetone.worlds.worldOne.entities.Enemy;
 	import youonlygetone.worlds.worldTwo.Electro;
+	import youonlygetone.worlds.worldTwo.ElectroDown;
 	
 	public class Robot extends Entity
 	{
@@ -29,6 +30,8 @@ package youonlygetone
 		private var didSecondJump:Boolean = false;
 		private var electro:Electro;
 		private var timeFromElectro:Number = 0;
+		private var timeFromLastDown:Number = 0;
+		private var electroDown:ElectroDown;
 		
 		public function Robot(world:World, x:int, y:int)
 		{
@@ -46,6 +49,10 @@ package youonlygetone
 			electro = new Electro(x - 7, y - 14);
 			world.add(electro);
 			electro.visible = false;
+			
+			electroDown = new ElectroDown(x - 7, y + 14);
+			world.add(electroDown);
+			electroDown.visible = false;
 		}
 		
 		override public function update():void
@@ -80,6 +87,8 @@ package youonlygetone
 			
 			electro.x = x - 7;
 			electro.y = y - 14;
+			electroDown.x = x - 8;
+			electroDown.y = y + 20;
 			if (Skills.allowWeapon && Input.pressed(Key.SPACE)) {
 				electro.visible = true;
 				timeFromElectro = 0;
@@ -96,7 +105,7 @@ package youonlygetone
 			}
 			
 			var enemy:Enemy = collide("enemy", x, y) as Enemy;
-			if (enemy && blinkCount <= 0) {
+			if (enemy && blinkCount <= 0 && !Skills.understandAliens) {
 				blinkCount = 60;
 				var angle:Number = Math.atan2(enemy.y - y, enemy.x - x);
 				speedX = -3 * Math.cos(angle);
@@ -135,7 +144,18 @@ package youonlygetone
 					didSecondJump = true;
 					speedY = -accelerationJump;
 				}
+				if (Input.check(Key.DOWN) && electro.visible && !electroDown.visible && Skills.jumpDown) {
+					timeFromLastDown = 0;
+					speedY = accelerationJump * 2;
+					electroDown.visible = true;
+				}
 			}
+			timeFromLastDown += FP.elapsed;
+			if (timeFromLastDown > 0.5) { 
+				electroDown.visible = false;
+			}
+			
+			
 			speedY += accelerationY;
 			y += speedY;
 			if (y > 310) {
