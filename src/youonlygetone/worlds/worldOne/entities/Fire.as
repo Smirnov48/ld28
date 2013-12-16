@@ -38,7 +38,7 @@ package youonlygetone.worlds.worldOne.entities
 			name = "boss";
 			
 			graphic = new Image(image);
-			setHitbox(32, 32);
+			setHitbox(24, 24);
 			
 			speedX = -100 * Math.cos(angle);
 			speedY = -100 * Math.sin(angle);

@@ -59,11 +59,11 @@ package youonlygetone.worlds.worldOne.entities
 			}
 			
 			var weapon:* =  collide("weapon", x, y);
-			if (weapon && weapon.visible)
+			if (weapon && blinkCount <= 0  && weapon.visible)
 			{
 				countHint++;
 				blinkCount = 30;
-				if (countHint > 20) {				
+				if (countHint > 60) {				
 					FP.world.add(new Bang(x, y));
 					FP.world.remove(this);
 					FP.world = new YouWinWorld();

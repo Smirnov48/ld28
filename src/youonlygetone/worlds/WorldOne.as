@@ -51,6 +51,10 @@ package youonlygetone.worlds
 		override public function update():void {
 			super.update();
 			
+			if (player.x < 0) {
+				player.x = 0;
+			}
+			
 			var i:int;
 			var flakes:Array;
 			time += FP.elapsed;

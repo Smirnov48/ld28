@@ -2,6 +2,8 @@ package youonlygetone.worlds
 {
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	import net.flashpunk.World;
 	import youonlygetone.LiveCounter;
 	import youonlygetone.Robot;
@@ -66,9 +68,13 @@ package youonlygetone.worlds
 				}
 			}
 			
+			if (player.x < 0) {
+				player.x = 0;
+			}
+			
 			if (restartCount >= 0) {
 				restartCount += FP.elapsed;
-				if (restartCount > 10) {
+				if (restartCount > 10  || Input.released(Key.SPACE)) {
 					FP.world = new WorldOneGame();
 				}
 			} else {

@@ -8,6 +8,7 @@ package youonlygetone
 	import net.flashpunk.World;
 	import youonlygetone.worlds.worldOne.entities.Boss;
 	import youonlygetone.worlds.worldOne.entities.Enemy;
+	import youonlygetone.worlds.worldOne.entities.Fire;
 	import youonlygetone.worlds.worldTwo.Electro;
 	import youonlygetone.worlds.worldTwo.ElectroDown;
 	
@@ -106,8 +107,7 @@ package youonlygetone
 			}
 			
 			var enemy:* = collide("enemy", x, y);
-			trace(enemy);
-			if ((enemy && blinkCount <= 0) && !Skills.understandAliens || enemy as Boss || enemy as Enemy) {
+			if ((enemy && blinkCount <= 0) && (!Skills.understandAliens || enemy as Boss || enemy as Fire) ) {
 				blinkCount = 60;
 				var angle:Number = Math.atan2(enemy.y - y, enemy.x - x);
 				speedX = -3 * Math.cos(angle);
